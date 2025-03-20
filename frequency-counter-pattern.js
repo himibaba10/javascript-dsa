@@ -37,23 +37,18 @@ function validAnagram(string1, string2) {
   if (string1.length !== string2.length) return false;
 
   const str1FrequencyCounter = {};
-  const str2FrequencyCounter = {};
 
   for (let char of string1) {
     str1FrequencyCounter[char] = (str1FrequencyCounter[char] || 0) + 1;
   }
 
-  for (let char of string2) {
-    str2FrequencyCounter[char] = (str2FrequencyCounter[char] || 0) + 1;
-  }
-
-  for (let key in str1FrequencyCounter) {
-    if (!key in str2FrequencyCounter) return false;
-
-    if (str1FrequencyCounter[key] !== str2FrequencyCounter[key]) return false;
+  for (let i = 0; i < string2.length; i++) {
+    let letter = string2[i];
+    if (!str1FrequencyCounter[letter]) return false;
+    else str1FrequencyCounter[letter] -= 1;
   }
 
   return true;
 }
 
-// console.log(validAnagram("cat", "cta"));
+console.log(validAnagram("catt", "ctta"));
